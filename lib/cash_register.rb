@@ -8,21 +8,11 @@ def initialize(discount = 0)
   @items = []
 end
 
-def add_item(title,price,quantity = 1)
-   if quantity>1
-     i=0
-     while i<quantity
-       @items << title
-       i+=1
-     end
-   else
-     @items << title
-   end
-   @total += price*quantity
-   @last_transaction_amount = @total
-   @total
- end
-
+def add_item(title, price, quantity = 1) #has at least one item
+    @total += (price * quantity) #multiplies the price to quantity and adds it == to total
+    quantity.times { @items << title } #whatever the quantity is, multiply it by the title, then add it to the array
+    @item_count = (price * quantity)
+  end
  def apply_discount()
    if @discount > 0
      @discount = @discount/100.to_f
